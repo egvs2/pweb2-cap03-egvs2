@@ -10,15 +10,24 @@
 //
 // Ponto de partida (descomente e desenvolva):
 //
-import http from 'node:http';
 
-const PORT = process.env.PORT || 3000;
+import http from 'node:http'
+
+const port = process.env.PORT || 3000
 
 const server = http.createServer((req, res) => {
-    // dica: use req.method, req.url e req.headers para decidir a resposta
-    if(req.method == 'GET'){
-        res.writeHead(200, {'content-type': 'text/plain'});
-    res.end('Olá, mundo!')
+
+    const path =  req.url.split('?')
+
+    const metodo = req.method
+
+    if(metodo == 'GET' & path == '/'){
+        res.writeHead(200, {'content-type': 'text/plain'})
+        return res.end('Olá, mundo!')
     }
-});
-server.listen(PORT, () => console.log(`Servidor em http://localhost:${PORT}`));
+
+})
+
+server.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}; Ctrl-C para terminar....`);
+})
