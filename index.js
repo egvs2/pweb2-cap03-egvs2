@@ -31,6 +31,13 @@ const server = http.createServer((req, res) => {
         return res.end('<h1>Sobre</h1>')
     }
 
+    if(metodo === 'GET' && path.startsWith('/saudacao')){
+        const nome = path.slice(10)
+        res.writeHead(200, {'Content-Type':'Text/plain; charset=utf-8'})
+        return res.end(`Olá, ${nome}!`)
+    }
+
+    
     res.writeHead(404,{'Content-Type' : 'Text / plain:charset=utf-8'})
     res.end('Não encotrado')
 })
