@@ -55,6 +55,11 @@ const server = http.createServer((req, res) => {
         return res.end(`Item ${id} atualizado`)
     }
 
+    if(metodo === 'DELETE' && path.startsWith('/itens/')){
+        res.writeHead(204)
+        return res.end()
+    }
+
     
     res.writeHead(404,{'Content-Type' : 'Text / plain:charset=utf-8'})
     res.end('Não encotrado')
