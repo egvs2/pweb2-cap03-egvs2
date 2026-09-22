@@ -37,7 +37,7 @@ const server = http.createServer((req, res) => {
         return res.end(`Olá, ${nome}!`)
     }
 
-    if(metodo == 'POST' && path == '/echo'){
+    if(metodo === 'POST' && path === '/echo'){
         let corpo = ''
         req.on('data', (chunk) => {
             corpo += chunk
@@ -47,6 +47,12 @@ const server = http.createServer((req, res) => {
             res.writeHead(200, {'Content-Type':'Text/plain; charset=utf-8'})
             res.end(corpo)
         })
+    }
+
+    if(metodo === 'PUT' && path.startsWith('/itens/')){
+        const id = path.slice(7)
+        res.writeHead(200, {'Content-Type':'Text/plain; charset=utf-8'})
+        return res.end(`Item ${id} atualizado`)
     }
 
     
