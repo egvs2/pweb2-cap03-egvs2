@@ -17,7 +17,7 @@ const port = process.env.PORT || 3000
 
 const server = http.createServer((req, res) => {
 
-    const path =  req.url.split('?')
+    const path =  req.url.split('?')[0]
 
     const metodo = req.method
 
@@ -26,6 +26,10 @@ const server = http.createServer((req, res) => {
         return res.end('Olá, Mundo!')
     }
 
+    if(metodo === 'GET' && path === '/sobre'){
+        res.writeHead(200, {'Content-Type': 'text/html'})
+        return res.end('<h1>Sobre</h1>')
+    }
 })
 
 server.listen(port, () => {
