@@ -37,6 +37,18 @@ const server = http.createServer((req, res) => {
         return res.end(`Olá, ${nome}!`)
     }
 
+    if(metodo == 'POST' && path == '/echo'){
+        let corpo = ''
+        req.on('data', (chunk) => {
+            corpo += chunk
+        })
+
+        return req.on('end', ()=>{
+            res.writeHead(200, {'Content-Type':'Text/plain; charset=utf-8'})
+            res.end(corpo)
+        })
+    }
+
     
     res.writeHead(404,{'Content-Type' : 'Text / plain:charset=utf-8'})
     res.end('Não encotrado')
