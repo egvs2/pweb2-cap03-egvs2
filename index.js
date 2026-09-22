@@ -60,6 +60,11 @@ const server = http.createServer((req, res) => {
         return res.end()
     }
 
+    if(metodo === 'PATCH' && path === '/config'){
+        res.writeHead(200, {'Content-Type':'Text/plain; charset=utf-8'})
+        return res.end('Configuração atualizada')
+    }
+
     
     res.writeHead(404,{'Content-Type' : 'Text / plain:charset=utf-8'})
     res.end('Não encotrado')
