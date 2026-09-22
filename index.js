@@ -30,6 +30,9 @@ const server = http.createServer((req, res) => {
         res.writeHead(200, {'Content-Type': 'text/html'})
         return res.end('<h1>Sobre</h1>')
     }
+
+    res.writeHead(404,{'Content-Type' : 'Text / plain:charset=utf-8'})
+    res.end('Não encotrado')
 })
 
 server.listen(port, () => {
